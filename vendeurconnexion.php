@@ -2,7 +2,7 @@
 
 session_start();
 if(isset($_SESSION['vendeur'])){
-  header('location:vendeurinfo.php');
+  header('location:vendeurprofil.php');
 }elseif(isset($_SESSION['client'])){
   header('location:utilvendeur.php');
 }elseif(isset($_SESSION['admin'])){
@@ -60,6 +60,9 @@ if(isset($_SESSION['vendeur'])){
           </li>
           <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>

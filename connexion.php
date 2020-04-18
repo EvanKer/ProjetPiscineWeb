@@ -60,6 +60,9 @@ if(isset($_SESSION['client'])){
           <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>
           </li>
