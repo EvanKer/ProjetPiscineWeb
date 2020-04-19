@@ -1,5 +1,5 @@
-//<!DOCTYPE html>
-//<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -36,12 +36,6 @@
             </a>            
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='http://localhost/ecebay/adminconnexion.php'>Admin</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href='http://localhost/ecebay/vendeurconnexion.php'>Espace Vendeur</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/achat.php'>Achat</a>
           </li>
           <li class="nav-item">
@@ -51,10 +45,13 @@
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='http://localhost/ecebay/connexion.php'>Mon Compte</a>
+            <a class="nav-link" href='http://localhost/ecebay/connexion.php'>Connexion</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/panier.php'>Mon Panier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='http://localhost/ecebay/vendeurs.php'>Vendeurs</a>
           </li>
           <input type="search" name="research" id="site-search">
           <button>Search</button>
@@ -64,7 +61,7 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container-fluid">
+  <div class="container">
 
     <div class="row">
 
@@ -73,8 +70,8 @@
         <h1 class="my-4">ecebay</h1>
         <div class="list-group">
           <a href="http://localhost/ecebay/sneakers.php" class="list-group-item">Sneakers</a>
-          <a href="#" class="list-group-item">Streetwear</a>
-          <a href="#" class="list-group-item">Collectibles</a>
+          <a href="http://localhost/ecebay/streetwear.php" class="list-group-item">Streetwear</a>
+          <a href="http://localhost/ecebay/collectibles.php" class="list-group-item">Collectibles</a>
         </div>
 
       </div>
@@ -90,22 +87,22 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="unc.jpg" alt="First slide">
+              <img class="d-block img-fluid" src="unc2.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="chicago.jpg" alt="Second slide">
+              <img class="d-block img-fluid" src="chicago2.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="nrg.jpg" alt="Third slide">
+              <img class="d-block img-fluid" src="nrg2.jpg" alt="Third slide">
             </div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="color: black">
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="color:red">
             <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
-            <span class="sr-only" style="color: black">Previous</span>
+            <span class="sr-only" style="color:red">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="color: black">
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="color: red">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only" style="color: black">Next</span>
+            <span class="sr-only" style="color:red">Next</span>
           </a>
         </div>
 
@@ -122,7 +119,7 @@
                 <p class="card-text">Jordan1 Off White UNC</p>
               </div>
               <div class="card-footer">
-                <button>BUY</button>
+                <button class="styled" type="button">BUY</button>
               </div>
             </div>
           </div>
@@ -138,7 +135,7 @@
                 <p class="card-text" href="chicago.php">Jordan1 Off White Chicago</p>
               </div>
               <div class="card-footer">
-                <button onclick="window.location.href = 'http://localhost/ecebay/chicago.php'";">BUY</button>
+                <button class="styled" type="button">BUY</button>
               </div>
             </div>
           </div>
@@ -154,7 +151,7 @@
                 <p class="card-text">Jordan 1 Off White NRG</p>
               </div>
               <div class="card-footer">
-                <button>BUY</button>
+                <button class="styled" type="button">BUY</button>
               </div>
             </div>
           </div>
@@ -170,7 +167,7 @@
                 <p class="card-text">Jordan 1 Fragment</p>
               </div>
               <div class="card-footer">
-                <button>BUY</button>
+                <a href="jordan1fragment.php"><button class="styled" type="button">BUY</button></a>
               </div>
             </div>
           </div>
@@ -186,7 +183,7 @@
                 <p class="card-text">Jordan 1 Bred Toe</p>
               </div>
               <div class="card-footer">
-                <button>BUY</button>
+                <button class="styled" type="button">BUY</button>
               </div>
             </div>
           </div>
@@ -202,10 +199,10 @@
                 <p class="card-text">Jordan 1 Pine Green</p>
               </div>
               <div class="card-footer">
-                <button>BUY</button>
+                <button class="styled" type="button">BUY</button>
               </div>
             </div>
-          </div>
+          </div>  
 
         </div>
         <!-- /.row -->
@@ -234,11 +231,3 @@
 </body>
 
 </html>
-
-
-<script>
-  function openchicago()
-  {
-
-  }
-</script>

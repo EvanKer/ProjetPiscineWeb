@@ -1,11 +1,6 @@
-<?php
+<?php 
 
 session_start();
-if(isset($_SESSION['vendeur'])){
-  header('location:vendeurmoncompte.php');
-}
-
-$item = $_POST['nomlien'];
 
 ?>
 
@@ -85,20 +80,21 @@ $item = $_POST['nomlien'];
     <div class="col-lg-9">
 
       <div class="card mt-4">
-        <img class="card-img-top img-fluid" src="chicago.jpg" alt="">
+        <p><?php echo '<img class="card-img-top img-fluid" src="'.$_SESSION['photo'].'" alt="PhotoItem">'?></p>
         <div class="card-body">
-          <h3 class="card-title"><?php echo $item ?></h3>
+          <h3 class="card-title"><?php echo $_SESSION['item'] ?></h3>
           <h4>Enchere actuelle :
            <?php
 
            $mysqli= new mysqli('localhost', 'root', '', 'items');
            $mysqli->set_charset("utf8");
-           $requete='SELECT `prixActuel` FROM `sneakers` WHERE nom= "'.$item'" ';
+           $requete='SELECT `prixActuel` FROM `sneakers` WHERE nom= "'.$_SESSION['item'].'" ';
            $resultat = $mysqli->query($requete);
 
            while ($ligne=$resultat->fetch_assoc()) {
 
-            echo $ligne['prixActuel'].'  $'.'<br>'; 
+            echo $ligne['prixActuel'].'  $'.'<br>';
+
 
           }
 
@@ -107,7 +103,7 @@ $item = $_POST['nomlien'];
           ?>
 
         </h4><br>
-        <h4>DATE DE FIN DE  :
+        <h4>DATE DE FIN  :
           <?php
 
          // $mysqli= new mysqli('localhost', 'root', '', 'items');
@@ -118,7 +114,7 @@ $item = $_POST['nomlien'];
 
           $db_handle = mysqli_connect('localhost', 'root', '');
           $db_found = mysqli_select_db($db_handle, $database);
-          $requete='SELECT `tempsRestant` FROM `sneakers` WHERE nom= "jordan1 chicago" ';
+          $requete='SELECT `tempsRestant` FROM `sneakers` WHERE nom= "'.$_SESSION['item'].'" ';
           $resultat = mysqli_query($db_handle, $requete);
           $dateActuel =date("yy-m-d");
 
@@ -134,7 +130,7 @@ $item = $_POST['nomlien'];
             $sql = "SELECT etat FROM sneakers ";
             $result = mysqli_query($db_handle, $sql);
 
-            $sql ="UPDATE sneakers SET etat = '0' WHERE `sneakers`.`id` = 3";
+            $sql ="UPDATE sneakers SET etat = '0' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
             $result =mysqli_query($db_handle, $sql); 
 
 
@@ -147,7 +143,7 @@ $item = $_POST['nomlien'];
             $sql = "SELECT etat FROM sneakers ";
             $result = mysqli_query($db_handle, $sql);
 
-            $sql ="UPDATE sneakers SET etat = '1' WHERE `sneakers`.`id` = 3";
+            $sql ="UPDATE sneakers SET etat = '1' WHERE `sneakers`.`nom` = '".$_SESSION['item']."'' ";
             $result =mysqli_query($db_handle, $sql);
           }
 
@@ -165,7 +161,7 @@ $item = $_POST['nomlien'];
 
 
       <p class="card-text"><br>
-      <?php echo $Description ?></p>
+      <?php echo $_SESSION['desc'] ?></p>
       <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
       4.0 stars
     </div>
@@ -187,7 +183,7 @@ $item = $_POST['nomlien'];
 
           $mysqli= new mysqli('localhost', 'root', '', 'items');
           $mysqli->set_charset("utf8");
-          $requete='SELECT * FROM sneakers WHERE nom= "jordan1 chicago" ';
+          $requete='SELECT * FROM sneakers WHERE nom= "'.$_SESSION['item'].'" ';
           $resultat = $mysqli->query($requete);
 
           while ($ligne=$resultat->fetch_assoc()) {
@@ -252,7 +248,6 @@ $item = $_POST['nomlien'];
 
 <?php
 $prixActuel = isset($_POST["prix_actuel_item"])? $_POST["prix_actuel_item"] : "";
-$utilisateur = $_SESSION['client'];
 
 $database ="items";
 
@@ -275,8 +270,10 @@ while ($ligne=$resultat2->fetch_assoc()) {
         $sql = "SELECT prixActuel FROM sneakers ";
         $result = mysqli_query($db_handle, $sql);
 
-        $sql ="UPDATE sneakers SET prixActuel = '$prixActuel' WHERE `sneakers`.`id` = 3";
-        $result =mysqli_query($db_handle, $sql);  
+        $sql ="UPDATE sneakers SET prixActuel = '$prixActuel' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
+        $result =mysqli_query($db_handle, $sql);
+        $sql ="UPDATE sneakers SET acheteur = '".$_SESSION['client']."' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
+        $result =mysqli_query($db_handle, $sql);   
 
       }
 
@@ -288,8 +285,10 @@ while ($ligne=$resultat2->fetch_assoc()) {
         $sql = "SELECT prixActuel AND prix FROM sneakers ";
         $result = mysqli_query($db_handle, $sql);
 
-        $sql ="UPDATE sneakers SET prixActuel = prix WHERE `sneakers`.`id` = 3";
-        $result =mysqli_query($db_handle, $sql);  
+        $sql ="UPDATE sneakers SET prixActuel = prix WHERE `sneakers`.`nom` = '".$_SESSION['item']."'";
+        $result =mysqli_query($db_handle, $sql); 
+         $sql ="UPDATE sneakers SET acheteur = '".$_SESSION['client']."' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
+        $result =mysqli_query($db_handle, $sql);    
       }
 
 
@@ -297,7 +296,7 @@ while ($ligne=$resultat2->fetch_assoc()) {
 
 
 
-    else { echo "databse not found";
+    else { echo "database not found";
 
   }
 
