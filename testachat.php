@@ -83,84 +83,121 @@ session_start();
         <p><?php echo '<img class="card-img-top img-fluid" src="'.$_SESSION['photo'].'" alt="PhotoItem">'?></p>
         <div class="card-body">
           <h3 class="card-title"><?php echo $_SESSION['item'] ?></h3>
-          <h4>Enchere actuelle :
+          <h4>Type de vente :
            <?php
 
            $mysqli= new mysqli('localhost', 'root', '', 'items');
            $mysqli->set_charset("utf8");
-           $requete='SELECT `prixActuel` FROM `sneakers` WHERE nom= "'.$_SESSION['item'].'" ';
+           $requete='SELECT * FROM `sneakers` WHERE nom= "'.$_SESSION['item'].'" ';
            $resultat = $mysqli->query($requete);
 
            while ($ligne=$resultat->fetch_assoc()) {
 
-            echo $ligne['prixActuel'].'  $'.'<br>';
-
-
+            echo $ligne['vente'].''.'<br>';
+            
           }
 
 
 
           ?>
 
-        </h4><br>
-        <h4>DATE DE FIN  :
-          <?php
+        </h4>
+          <h4>Offre actuelle :
+           <?php
+
+           $mysqli= new mysqli('localhost', 'root', '', 'items');
+           $mysqli->set_charset("utf8");
+           $requete='SELECT * FROM `sneakers` WHERE nom= "'.$_SESSION['item'].'" ';
+           $resultat = $mysqli->query($requete);
+
+           while ($ligne=$resultat->fetch_assoc()) {
+
+            echo $ligne['prixActuel'].'  $'.'<br>';
+            
+          }
+
+
+
+          ?>
+
+        </h4>
+        <h4>Acheter immediatement :
+         <?php
+
+         $mysqli= new mysqli('localhost', 'root', '', 'items');
+         $mysqli->set_charset("utf8");
+         $requete='SELECT * FROM `sneakers` WHERE nom= "'.$_SESSION['item'].'" ';
+         $resultat = $mysqli->query($requete);
+
+         while ($ligne=$resultat->fetch_assoc()) {
+
+          echo $ligne['prix'].'  $'.'<br>';
+
+        }
+
+
+
+        ?>
+
+      </h4><br>
+      <h4>DATE DE FIN  :
+        <?php
 
          // $mysqli= new mysqli('localhost', 'root', '', 'items');
          // $mysqli->set_charset("utf8");
-          $database ="items";
+        $database ="items";
 
-          $mysqli = new mysqli('localhost', 'root', '', 'items');
+        $mysqli = new mysqli('localhost', 'root', '', 'items');
 
-          $db_handle = mysqli_connect('localhost', 'root', '');
-          $db_found = mysqli_select_db($db_handle, $database);
-          $requete='SELECT `tempsRestant` FROM `sneakers` WHERE nom= "'.$_SESSION['item'].'" ';
-          $resultat = mysqli_query($db_handle, $requete);
-          $dateActuel =date("yy-m-d");
+        $db_handle = mysqli_connect('localhost', 'root', '');
+        $db_found = mysqli_select_db($db_handle, $database);
+        $requete='SELECT `tempsRestant` FROM `sneakers` WHERE nom= "'.$_SESSION['item'].'" ';
+        $resultat = mysqli_query($db_handle, $requete);
+        $dateActuel =date("yy-m-d");
 
-          while ($ligne=$resultat->fetch_assoc()) {
+        while ($ligne=$resultat->fetch_assoc()) {
 
-           echo $ligne['tempsRestant'].''.'<br>';
-           echo "DATE DU JOUR : ".$dateActuel.'<br>';  
+         echo $ligne['tempsRestant'].''.'<br>';
+         echo "DATE DU JOUR : ".$dateActuel.'<br>';  
 
-           if ($dateActuel<=$ligne['tempsRestant'])
-           {
-            echo "il reste du temps chakal<br>";
+         if ($dateActuel<=$ligne['tempsRestant'])
+         {
+          echo "il reste du temps chakal<br>";
 
-            $sql = "SELECT etat FROM sneakers ";
-            $result = mysqli_query($db_handle, $sql);
+          $sql = "SELECT etat FROM sneakers ";
+          $result = mysqli_query($db_handle, $sql);
 
-            $sql ="UPDATE sneakers SET etat = '0' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
-            $result =mysqli_query($db_handle, $sql); 
+          $sql ="UPDATE sneakers SET etat = '0' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
+          $result =mysqli_query($db_handle, $sql); 
 
 
-          }
+        }
 
-          else if ($dateActuel>$ligne['tempsRestant'])
+        else if ($dateActuel>$ligne['tempsRestant'])
 
-          {
-            echo "la vente est finie chakal<br>";
-            $sql = "SELECT etat FROM sneakers ";
-            $result = mysqli_query($db_handle, $sql);
+        {
+          echo "la vente est finie chakal<br>";
+          $sql = "SELECT etat FROM sneakers ";
+          $result = mysqli_query($db_handle, $sql);
 
-            $sql ="UPDATE sneakers SET etat = '1' WHERE `sneakers`.`nom` = '".$_SESSION['item']."'' ";
-            $result =mysqli_query($db_handle, $sql);
-          }
+          $sql ="UPDATE sneakers SET etat = '1' WHERE `sneakers`.`nom` = '".$_SESSION['item']."'' ";
+          $result =mysqli_query($db_handle, $sql);
+        }
 
          // $compteur = abs($ligne['tempsRestant'] - $dateActuel);
 
           //echo $compteur;
 
 
-        } 
+      } 
 
           //echo "DATE DU JOUR : ".$dateActuel.'<br>';  
 
-        ?>
-      </h4>
+      ?>
+    </h4>
 
 
-      <p class="card-text"><br>
+    <p class="card-text"><br>
       <?php echo $_SESSION['desc'] ?></p>
       <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
       4.0 stars
@@ -251,13 +288,13 @@ $prixActuel = isset($_POST["prix_actuel_item"])? $_POST["prix_actuel_item"] : ""
 
 $database ="items";
 
-$mysqli = new mysqli('localhost', 'root', '', 'items');
+//$mysqli = new mysqli('localhost', 'root', '', 'items');
 
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 $requete= "SELECT prixActuel AND prix FROM sneakers ";
 $resultat = mysqli_query($db_handle, $requete);
-$requete2= "SELECT etat FROM sneakers ";
+$requete2= "SELECT * FROM sneakers ";
 $resultat2 = mysqli_query($db_handle, $requete2);
 
 while ($ligne=$resultat2->fetch_assoc()) {
@@ -266,49 +303,56 @@ while ($ligne=$resultat2->fetch_assoc()) {
 
     if($_POST["button1"]) { // faire une offre
       if ($db_found) {
+        if ($prixActuel<$ligne['prixActuel'])
+        {
+          echo "offre trop basse";
+        }
 
-        $sql = "SELECT prixActuel FROM sneakers ";
-        $result = mysqli_query($db_handle, $sql);
+        else if ($prixActuel>$ligne['prixActuel'])  {
+          echo "offre suffisante";
 
-        $sql ="UPDATE sneakers SET prixActuel = '$prixActuel' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
-        $result =mysqli_query($db_handle, $sql);
-        $sql ="UPDATE sneakers SET acheteur = '".$_SESSION['client']."' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
-        $result =mysqli_query($db_handle, $sql);   
+          $sql = "SELECT prixActuel FROM sneakers ";
+          $result = mysqli_query($db_handle, $sql);
 
+          $sql ="UPDATE sneakers SET prixActuel = '$prixActuel' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
+          $result =mysqli_query($db_handle, $sql);
+          $sql ="UPDATE sneakers SET acheteur = '".$_SESSION['client']."' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
+          $result =mysqli_query($db_handle, $sql);   
+        }
       }
 
     }
 
     if($_POST["button2"]) // achat immédiat
-      if ($db_found) {
+    if ($db_found) {
 
-        $sql = "SELECT prixActuel AND prix FROM sneakers ";
-        $result = mysqli_query($db_handle, $sql);
+      $sql = "SELECT prixActuel AND prix FROM sneakers ";
+      $result = mysqli_query($db_handle, $sql);
 
-        $sql ="UPDATE sneakers SET prixActuel = prix WHERE `sneakers`.`nom` = '".$_SESSION['item']."'";
-        $result =mysqli_query($db_handle, $sql); 
-         $sql ="UPDATE sneakers SET acheteur = '".$_SESSION['client']."' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
-        $result =mysqli_query($db_handle, $sql);    
-      }
-
-
+      $sql ="UPDATE sneakers SET prixActuel = prix WHERE `sneakers`.`nom` = '".$_SESSION['item']."'";
+      $result =mysqli_query($db_handle, $sql); 
+      $sql ="UPDATE sneakers SET acheteur = '".$_SESSION['client']."' WHERE `sneakers`.`nom`= '".$_SESSION['item']."'";
+      $result =mysqli_query($db_handle, $sql);    
     }
 
 
-
-    else { echo "database not found";
-
   }
+
+
+
+  else { echo "database not found";
+
+}
 
 }
 
 
 
-  mysqli_close($db_handle);
+mysqli_close($db_handle);
 
-  ?>
+?>
 
-  <script>
+<script>
 // raccourci d’écriture
 function $(id){return document.getElementById(id)}
 

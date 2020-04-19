@@ -88,6 +88,7 @@ $item = $_POST['nomlien'];
         <img class="card-img-top img-fluid" src="chicago.jpg" alt="">
         <div class="card-body">
           <h3 class="card-title"><?php echo $item ?></h3>
+
           <h4>Enchere actuelle :
            <?php
 
@@ -99,10 +100,9 @@ $item = $_POST['nomlien'];
            while ($ligne=$resultat->fetch_assoc()) {
 
             echo $ligne['prixActuel'].'  $'.'<br>'; 
+            
 
           }
-
-
 
           ?>
 
