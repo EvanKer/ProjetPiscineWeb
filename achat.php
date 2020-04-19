@@ -26,6 +26,7 @@ $item = $_POST['nomlien'];
 
   <!-- Custom styles for this template -->
   <link href="css/shop-item.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" type="text/css"/>
 
 </head>
 
@@ -86,7 +87,7 @@ $item = $_POST['nomlien'];
 
       <div class="card mt-4">
         <img class="card-img-top img-fluid" src="chicago.jpg" alt="">
-        <div class="card-body">
+        <div class="gameGrid">
           <h3 class="card-title"><?php echo $item ?></h3>
 
           <h4>Enchere actuelle :

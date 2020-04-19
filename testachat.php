@@ -72,7 +72,7 @@ session_start();
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
+  <div class="container" text-align="center">
 
 
     <!-- /.col-lg-3 -->
@@ -199,8 +199,7 @@ session_start();
 
     <p class="card-text"><br>
       <?php echo $_SESSION['desc'] ?></p>
-      <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-      4.0 stars
+      
     </div>
   </div>
 
@@ -285,6 +284,8 @@ session_start();
 
 <?php
 $prixActuel = isset($_POST["prix_actuel_item"])? $_POST["prix_actuel_item"] : "";
+$b1=isset($_POST["button1"])? $_POST["button1"] : "";
+$b2=isset($_POST["button2"])? $_POST["button2"] : "";
 
 $database ="items";
 
@@ -301,15 +302,15 @@ while ($ligne=$resultat2->fetch_assoc()) {
 
   if ($ligne['etat']=='0'){
 
-    if($_POST["button1"]) { // faire une offre
+    if($b1) { // faire une offre
       if ($db_found) {
         if ($prixActuel<$ligne['prixActuel'])
         {
-          echo "offre trop basse";
+          //echo "offre trop basse";
         }
 
         else if ($prixActuel>$ligne['prixActuel'])  {
-          echo "offre suffisante";
+          //echo "offre suffisante";
 
           $sql = "SELECT prixActuel FROM sneakers ";
           $result = mysqli_query($db_handle, $sql);
@@ -323,7 +324,7 @@ while ($ligne=$resultat2->fetch_assoc()) {
 
     }
 
-    if($_POST["button2"]) // achat immédiat
+    if($b2) // achat immédiat
     if ($db_found) {
 
       $sql = "SELECT prixActuel AND prix FROM sneakers ";
@@ -340,9 +341,6 @@ while ($ligne=$resultat2->fetch_assoc()) {
 
 
 
-  else { echo "database not found";
-
-}
 
 }
 

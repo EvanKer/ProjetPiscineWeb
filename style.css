@@ -32,3 +32,36 @@
 	background-color: blue;
 
 }
+#gameGrid {
+width: 33%;
+height: 33%;
+background-color: white;
+border: 10px black;
+margin: auto;
+margin-top: 2%;
+margin-bottom:0%; 
+margin-right: 2px;
+margin-left: 2px;
+text-align :center;
+border-width:5px;
+border-style:solid;
+border-color: black;
+border-spacing: 2px;
+float: left;
+}
+
+.centre {
+
+	text-align :center;
+  
+}
+.titre 
+{
+	font-size : 100px;
+	text-align: center;
+	font-family: cursive;
+}
+.foot
+{
+	float-bottom;
+}

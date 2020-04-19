@@ -21,6 +21,8 @@ session_start();
 
   <!-- Custom styles for this template -->
   <link href="css/shop-item.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" type="text/css"/>
+
 
 </head>
 
@@ -70,9 +72,10 @@ session_start();
       </div>
     </div>
   </nav>
-  <div id="container">  <br><br><br><br><br><br>
-  <p>sneakers</p>
-  <br><br><br>
+  <div id="container">  <br><br><br>
+    <div class="titre">
+  sneakers</div>
+  <br>
   <form action="testachat2.php" method="post"><ul>
 
 <?php
@@ -84,34 +87,37 @@ $requete='SELECT * FROM sneakers';
 $resultat = $mysqli->query($requete);
 
 while ($ligne=$resultat->fetch_assoc()) {
-
-	echo $ligne['nom'].''.'<br>';
-	echo $ligne['description'].''.'<br>';
-	echo $ligne['categorie'].''.'<br>';
-	echo $ligne['vente'].''.'<br>';
-	echo $ligne['prix'].''.'<br>';
-  echo $ligne['photo'].''.'<br>';
+echo '<div id="gameGrid"><br>';
+	echo $ligne['nom'].''.'<br><br>';
+	echo $ligne['description'].''.'<br><br>';
+	//echo $ligne['categorie'].''.'<br><br>';
+	echo "type de vente : " .$ligne['vente'].''.'<br><br>';
+	echo "achat immediat : ".$ligne['prix'].''.'<br><br>';
+  //echo $ligne['photo'].''.'<br>';
 	echo '<img src="'.$ligne['photo'].'" alt=""/>'.'<br>';
 
   //echo '<td><input type="submit" value="Modifier" name='.$data_menu['nom'].'></td>';
   //echo '<input type="hidden" name="nomlien" value="'.$ligne['nom'].'" />';
 	//echo '<a href="testachat.php"><button>BUY NOW '.$_SESSION['item'].'</button></a>'.'<br><br><br>';
   //echo '<a href="testachat.php"  name="boutontest" value="'.$ligne['nom'].'" style="color:#FF0000;"> BUY NOW </a>'.'<br><br><br>';
-  echo '<button name="nomlien" value="'.$ligne['nom'].'" type="submit" class="mon-bouton"> BUY NOW </button>'.'<br><br><br>';
+  echo '<button name="nomlien" value="'.$ligne['nom'].'" type="submit" class="styled"> BUY NOW </button>'.'<br><br><br>';
+
+  echo '</div>';
+
 }
 
+  ?>
 
-  ?></ul></form>  
+
+</ul>
+</form>  
 
   <br><br><br><br></div>
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
-  <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-  </div>
+
   <!-- /.container -->
-</footer>
+
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>

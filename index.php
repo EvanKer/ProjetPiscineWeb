@@ -36,9 +36,6 @@
             </a>            
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='http://localhost/ecebay/achat.php'>Achat</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
           </li>
           <li class="nav-item">
