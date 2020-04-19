@@ -2,10 +2,8 @@
 
 session_start();
 
-$utilisateur = $_SESSION['vendeur'];
-
-
 $database = "selleraccounts";
+$utilisateur = $_SESSION['vendeur'];
 
 $db_handle = mysqli_connect('localhost','root','');
 $db_found = mysqli_select_db($db_handle,$database);
@@ -13,47 +11,62 @@ $db_found = mysqli_select_db($db_handle,$database);
 if ($db_found){
          $sql = "SELECT * FROM seller";
              if ($utilisateur != "") {
-                  //on cherche un vendeur avec les memes donnees     
+                  //on cherche un client avec les memes donnees     
                   $sql .= " WHERE pseudo LIKE '%$utilisateur%'";
                                       }
                                           $result = mysqli_query($db_handle, $sql);
                                               //regarder s'il y a de résultat    
                                               if (mysqli_num_rows($result) != 0) {
-                                                   //on a trouve le client dans la BDD
-                                              	       while ($data = mysqli_fetch_assoc($result)) { 
+                                                   //on a trouve le vendeur dans la BDD
+                                                 while ($data = mysqli_fetch_assoc($result)) { 
 
-                                                        $Nom = $data['nom'];
-                                                        }
+                                                        $Email = $data['email'];
 
-                                                        if ($Nom !=""){
+                                                        $Pseudo = $data['pseudo'];
+                                                        $nb_caractere_visible = 0;
+                                                        $remplacement = '*';
+                                                        $longueur_pseudo = strlen($Pseudo);
+                                                        $partie_visible = substr($Pseudo, 0, $nb_caractere_visible);
 
-                                                        	header('location:vendeurprofil.php');
-                                                        }
-                                                           
-                                                           } 
- 
-}
+                                                        //numéro de carte masquée
+                                                        $Pseudo_final = str_pad($partie_visible, $longueur_pseudo, $remplacement);
 
+                                                        $Nom = $data['nom'];                                                                                                        
+                                                        $Pdp = $data['photo'];                                                     
+                                                        $Idf = $data['imagepref'];
+                                                        $_SESSION['image'] = $Idf;
+                                                        
+                                                        }    } 
+                                                                                                             
+                                                        else { 
+                                                          echo "le client n'existe pas dans la bdd";}
+                                                                                
+                                                            
+ }else {    echo "Database not found";   } 
+
+ //fermer la connexion  
+  mysqli_close($db_handle);  
+ $color = "red";
 ?>
 
 <html>
 <head>
+  <title> Vendeur Infos </title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title> Vendeur Login and Registration </title>
-
-  <!-- Bootstrap core CSS -->
+  
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+ 
   <link href="css/shop-homepage.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" type="text/css"/>
-	
-  <link rel="stylesheet" type="text/css" href="styleconnexionvendeur.css"> 
+
+
+ <link rel="stylesheet" type="text/css" media="all" href="styleconnexionvendeur2.php">
   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 
@@ -61,7 +74,7 @@ if ($db_found){
 </head>
 <body>
 
-	<!-- Navigation -->
+
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href='http://localhost/ecebay/index.php'>Le shop du BG</a>
@@ -87,7 +100,7 @@ if ($db_found){
           <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
           </li>
           <li class="nav-item">
@@ -106,47 +119,31 @@ if ($db_found){
     </div>
   </nav>
 
-<!-- Page Content -->
 
-	<div class="login-box">
-	<div class="row">
-		<div class="col-md-6 login-center">
-			<h2> L'équipe ECEbay vous souhaite la bienvenue !</h2>
-			<h4> Veuillez remplir ce formulaire afin de finaliser votre inscription.</h4>
-			<form action="vendeurmaj.php" method="post">
-				<div class="form-group">
-					<label>Nom Complet : </label>
-					<input type="text" name="Nom" class="form-control" required>
-					</div>
-				<div class="form-group">
-					<label>Photo de profil : </label>
-					<input type="file" name="Photo_de_profil" value=""><br><br>				
-					</div>
-				<div class="form-group">
-					<label>image de fond : </label>
-					<input type="file" name="Image_de_fond" value=""><br><br>				
-					</div>
-
-					<button type="submit" name="bouton01" class="mon-bouton"> Enregistrer </button>	 
-            </form>
-        </div>    
-    </div>
-    </div>
+<div class="userinfos">
+  <h1> Informations de votre compte vendeur </h1><br>
+   <div class="info-client">
+   	<p><?php echo '<img src="'.$Pdp.'" width="100" height="120" alt="PhotoDeProfil"/>'.'<br>'?></p>
+    <p> Adresse e-mail : <?php echo $Email ?></p>
+    <p> Pseudo : <?php echo $Pseudo_final ?></p>
+    <p> Nom Complet : <?php echo $Nom ?></p>
+    <a class="float-right" href="deconnexion.php" style="color:#FF0000;"> Se deconnecter </a>
+   </div>
+</div>
 
 
-
-  <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
     </div>
-    <!-- /.container -->
+  
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
+ 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
-</html> 
+</html>
+

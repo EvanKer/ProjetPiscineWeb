@@ -10,6 +10,19 @@ if(isset($_SESSION['client'])){
 }
 ?>
 
+<style>
+  
+.redtext {
+
+
+  color: red;
+  font-size: 13px;
+  margin-left: 165px;
+  margin-top: 10px;
+}
+
+</style>
+
 <html>
 <head>
   <title> User Login and Registration </title>
@@ -60,6 +73,9 @@ if(isset($_SESSION['client'])){
           <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>
           </li>
@@ -96,7 +112,7 @@ if(isset($_SESSION['client'])){
         </div>    
     
         <div class="col-md-6 login-right">
-			<h2> Inscription </h2>
+			<h2> Inscription* </h2>
 			<form action="inscription.php" method="post">
 				<div class="form-group">
 					<label>Pseudo (Adresse email)</label>
@@ -108,7 +124,8 @@ if(isset($_SESSION['client'])){
 					</div>
 					<button type="submit" class="mon-bouton"> S'inscrire </button>	 
             </form>
-        </div>         
+        </div>
+        <h4 class="redtext">*Vous devez avoir un compte pour effectuer une transaction.</h4>         
     </div>
     </div>
 </div>

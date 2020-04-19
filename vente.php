@@ -1,3 +1,23 @@
+<?php
+
+session_start();
+if(isset($_SESSION['client'])){
+  header('location:utilvendeur.php');
+}elseif (isset($_SESSION['vendeur'])){
+
+   $utilisateur = $_SESSION['vendeur'];
+
+}elseif (isset($_SESSION['admin'])){
+
+   $utilisateur = $_SESSION['admin'];
+
+}elseif (isset($_SESSION['vendeur'])=="" && isset($_SESSION['admin'])=="" ){
+
+  header('location:utilvendeur.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,13 +35,14 @@
 
   <!-- Custom styles for this template -->
   <link href="css/shop-item.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styleconnexionvendeur.css"> 
 
 </head>
 
 <body>
 
   <!-- Navigation -->
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href='http://localhost/ecebay/index.php'>Le shop du BG</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +58,7 @@
           <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/adminconnexion.php'>Admin</a>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/vendeurconnexion.php'>Espace Vendeur</a>
           </li>
           <li class="nav-item">
@@ -45,6 +66,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>
@@ -63,62 +87,76 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
-
-    
-      <!-- /.col-lg-3 -->
-
-      <div class="col-lg-9">
-
-        <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="chicago.jpg" alt="">
-          <div class="card-body">
-            <h3 class="card-title">Jordan 1 Off White Chicago</h3>
-            <h4>Enchere actuelle : $24.99</h4><br>
-            <h4>temps restant 5min</h4>
-            <p class="card-text"><br>
-            The Off-White x Air Jordan 1 Retro High OG was one of the most highly anticipated footwear collaborations of 2017. It marked the first time Virgil Abloh, founder of the Milan-based fashion labled and Jordan Brand had teamed up. Nicknamed "The 10" edition, this pair comes in the original Chicago-themed white, black and varsity red colorway.</p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-            4.0 stars
+  <div class="login-box">
+    <div class="row">
+         <div class="col-md-6 login-center">
+      <h4> Mettez en vente un item dès maintenant <?php echo $utilisateur ?>!</h4>
+          <form action="venteajout.php" method="post">
+            <div class="form-group">
+            <label>Nom de l'item :</label>
+            <input type="text" name="nom_item" value="">
+            </div>
+            <div class="form-group">
+             <label>Description :</label>
+            <input type="text" name="description_item" value="">
+           </div>
+           <div class="form-group">
+           <label>Catégorie :</label>
+            <select name="cat_item">
+              <option value="sneakers">sneakers</option>
+              <option value="streetwear">street</option>
+              <option value="collectibles">collec</option>
+              <br><br>
+            </select>
           </div>
+          <div class="form-group">
+            <label>Type de vente :</label>
+            <select name="vente_item">
+              <option value="encheres">Encheres</option>
+              <option value="offre">Meilleur Offre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Prix de vente :</label>
+            <input type="text" name="prix_item" value="">
+          </div>
+            <div class="form-group">
+           <label>Photo de l'item :</label>
+            <input type="file" name="photo_item" value="">
+          </div>
+            <div class="form-group">
+           <label>Date fin de vente :</label>
+            <input type="datetime-local" name="date_item" value="">
+          </div>
+
+            <input type="submit" name="button" class="mon-bouton" value="enregistrer">
+
+          </form>
+
+
         </div>
-        <!-- /.card -->
-
-        <div class="card card-outline-secondary my-4">
-          <div class="card-header">
-            What do you want to do
-          </div>
-          <div class="card-body">
-            <p>
-            <button>faire une offre</button>
-          </p>
-            <hr>
-            <p><button>acheter maintenant</button></p>
-            <hr>
-          </div>
         </div>
         <!-- /.card -->
 
       </div>
       <!-- /.col-lg-9 -->
 
-    </div>
 
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
   </div>
   <!-- /.container -->
+</footer>
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
 </html>
+

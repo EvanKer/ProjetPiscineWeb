@@ -39,7 +39,7 @@ body{
 }
 
 .login-box2{
-	max-width: 500px;
+	max-width: 700px;
 	float: none;
 	margin: 150px auto;
 }
@@ -52,6 +52,13 @@ body{
 
 }
 
+
+.login-box4{
+	max-width: 700px;
+	float: none;
+	margin-top: 5px;
+
+}
 .login-center2{
 	background: rgba(211,211,211,0.4);
 	border-width: 1px;
