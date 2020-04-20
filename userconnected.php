@@ -117,6 +117,9 @@ if ($db_found){
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>
           </li>
           <li class="nav-item">
@@ -146,7 +149,8 @@ if ($db_found){
     <p> Pays : <?php echo $Pays ?></p>
     <p> Tel : <?php echo $Tel ?></p>
     <p> Numéro Carte Bancaire : <?php echo $NumCB_final ?></p>
-    <a class="float-right" href="deconnexion.php" style="color:#FF0000;"> Se deconnecter </a>
+    <a class="deco" href="deconnexion.php" style="color:#FF0000;"><center> Se deconnecter </center></a><br>
+    <a href="modifieruser.php" style="color:#11f494;"><center>               cliquez ici pour modifer vos informations personnelles.                   </center></a><br>
    </div>
 </div>
 

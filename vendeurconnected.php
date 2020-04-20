@@ -27,7 +27,7 @@ if ($db_found){
 
                                                         if ($Nom !=""){
 
-                                                        	header('location:vendeurinfo.php');
+                                                        	header('location:vendeurprofil.php');
                                                         }
                                                            
                                                            } 
@@ -86,6 +86,9 @@ if ($db_found){
           </li>
           <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>

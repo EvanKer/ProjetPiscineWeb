@@ -49,6 +49,9 @@
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>
           </li>
           <li class="nav-item">
@@ -66,7 +69,7 @@
 
   <!-- Page Content -->
  <div class="vendeurmoncompte">
-  <h1> Cet espace est réservé aux acheteurs, veuillez vous deconnecter de votre espace vendeur. </h1><br>
+  <h1> Cet espace est réservé aux acheteurs. </h1><br>
   <a class="float-mid" href="deconnexion.php" style="color:#FF0000;"> Se deconnecter </a>
 </div>
 

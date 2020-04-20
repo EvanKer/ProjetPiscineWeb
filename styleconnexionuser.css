@@ -72,17 +72,25 @@ body{
 }
 
 a.float-right{
-  
+  margin-right: 30px;
   margin-top: 10px;
-  margin-right: 160px;
   font-size: 20px;
   text-transform: uppercase;
   background: rgba(200,150,150,0.4);
   border-width: 3px;
   border-bottom-right-radius: : 5px;
   border-style: solid;
-  border-color: rgba(200,50,50,0.8);
+  border-color: rgba(100,0,0,0.8);
 
+}
+
+a.deco {
+
+	background: rgba(200,150,150,0.4);
+  border-width: 3px;
+  border-bottom-right-radius: : 5px;
+  border-style: solid;
+  border-color: rgba(100,0,0,0.8);
 }
 
 a.float-mid{
@@ -94,7 +102,7 @@ a.float-mid{
   border-width: 3px;
   border-bottom-right-radius: : 5px;
   border-style: solid;
-  border-color: rgba(200,50,50,0.8);
+  border-color: #FF0000;
 
 }
 

@@ -57,6 +57,9 @@ if(!isset($_SESSION['admin'])){
           <li class="nav-item">
             <a class="nav-link" href= 'http://localhost/ecebay/vente.php'>Ventes</a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" href= 'http://localhost/ecebay/negociations.php'>Negociations</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href='http://localhost/ecebay/contact.php'>Contact</a>
           </li>
@@ -76,7 +79,7 @@ if(!isset($_SESSION['admin'])){
       <div class="container">
       <h1>Bienvenue <?php echo $_SESSION['admin']; ?></h1> 
      <div class="container">
-      <div class="login-box2"> 
+      <div class="login-box4"> 
       <div class="row">
             <div class="col-md-6 login-left">
                   <h2> Fournisseurs </h2>
@@ -95,20 +98,70 @@ if(!isset($_SESSION['admin'])){
         </div>    
     
         <div class="col-md-6 login-right">
-                  <h2> Items </h2>
+                  <h2> Ajouter Items </h2>
                   <form action="adminfonctions.php" method="post">
                         <div class="form-group">
-                              <label>Titre</label>
-                              <input type="text" name="titre" class="form-control" required>
-                              </div>
-                        <div class="form-group">
-                              <label>Mot de passe</label>
-                              <input type="text" name="password" class="form-control" required>
-                              </div>
+            <label>Nom de l'item :</label><br>
+            <input type="text" name="nom_item" value="">
+            </div>
+            <div class="form-group">
+             <label>Description :</label><br>
+            <input type="text" name="description_item" value="">
+           </div>
+           <div class="form-group">
+           <label>Catégorie :</label><br>
+            <select name="cat_item">
+              <option value="sneakers">sneakers</option>
+              <option value="streetwear">street</option>
+              <option value="collectibles">collec</option>
+              <br><br>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Type de vente :</label><br>
+            <select name="vente_item">
+              <option value="encheres">Encheres</option>
+              <option value="offre">Meilleur Offre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Prix de vente :</label><br>
+            <input type="text" name="prix_item" value="">
+          </div>
+            <div class="form-group">
+           <label>Photo de l'item :</label><br>
+            <input type="file" name="photo_item" value="">
+          </div>
+            <div class="form-group">
+           <label>Date fin de vente :</label><br>
+            <input type="datetime-local" name="date_item" value="">
+          </div>
                               <button type="submit" name="bouton03" class="mon-bouton"> Ajouter </button>
-                              <button type="submit" name="bouton04" class="mon-bouton">Supprimer </button>       
+                              <!--<button type="submit" name="bouton04" class="mon-bouton">Supprimer </button>-->       
             </form>
-        </div>         
+        </div> 
+
+ <div class="col-md-6 login-right">
+                  <h2> Supprimer Items </h2>
+                  <form action="adminfonctions.php" method="post">
+                        <div class="form-group">
+            <label>Nom de l'item :</label><br>
+            <input type="text" name="nom_item" value="">
+            </div>
+           <div class="form-group">
+           <label>Catégorie :</label><br>
+            <select name="cat_item">
+              <option value="sneakers">sneakers</option>
+              <option value="streetwear">street</option>
+              <option value="collectibles">collec</option>
+              <br><br>
+            </select>
+          </div>
+                <button type="submit" name="bouton04" class="mon-bouton">Supprimer </button>       
+            </form>
+        </div> 
+
+
     </div>
     <a class="float-right" href="admindeconnexion.php"> Se deconnecter </a>
     </div>

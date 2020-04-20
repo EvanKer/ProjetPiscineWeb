@@ -32,10 +32,27 @@ if ($db_found){
                                                         $Pseudo_final = str_pad($partie_visible, $longueur_pseudo, $remplacement);
 
                                                         $Nom = $data['nom'];                                                                                                        
-                                                        $Pdp = $data['photo'];                                                     
+                                                        $Pdp = $data['photo'];
+                                                        //$Pdp = addslashes($Pdp);
+                                                        echo ' emplacement photo de profil : ';
+                                                        echo $Pdp;
+                                                         echo '<br>';
+                                                        echo ' photo de profil : ';
+                                                        echo '<a href="'.$Pdp.'"></a>'.'<br>';
+                                                        //echo '<img src="'.$Pdp.'" alt=""/>'.'<br>';
+                                                        echo '<br>';
+
+                                                        //echo '<img src="'.$data['photo'].'" alt=""/>'.'<br>';
                                                         $Idf = $data['imagepref'];
-                                                        $_SESSION['image'] = $Idf;
-                                                        
+                                                        //$Idf = addslashes($Idf);
+                                                        echo ' emplacement photo de fond : ';
+                                                        echo $Idf;
+                                                        echo '<br>';
+                                                        echo ' photo de fond : ';
+                                                        echo '<img src="'.$Idf.'" alt=""/>'.'<br>';
+                                                        //echo '<img src="'.$data['photo'].'" alt=""/>'.'<br>';
+                                                         //echo '<div id="piu" style="background-image: '.$img.';" ></div>';
+
                                                         }    } 
                                                                                                              
                                                         else { 
@@ -46,10 +63,10 @@ if ($db_found){
 
  //fermer la connexion  
   mysqli_close($db_handle);  
- $color = "red";
+
 ?>
 
-<html>
+<!--<html>
 <head>
   <title> Vendeur Infos </title>
 
@@ -65,8 +82,7 @@ if ($db_found){
   <link href="css/shop-homepage.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" type="text/css"/>
 
-
- <link rel="stylesheet" type="text/css" media="all" href="styleconnexionvendeur2.php">
+  <link rel="stylesheet" type="text/css" href="styleconnexionuser.css">
   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 
@@ -120,10 +136,10 @@ if ($db_found){
 <div class="userinfos">
   <h1> Informations de votre compte vendeur </h1><br>
    <div class="info-client">
-   	<p><?php echo '<img src="'.$Pdp.'" width="100" height="120" alt="PhotoDeProfil"/>'.'<br>'?></p>
     <p> Adresse e-mail : <?php echo $Email ?></p>
     <p> Pseudo : <?php echo $Pseudo_final ?></p>
     <p> Nom Complet : <?php echo $Nom ?></p>
+    <p> Pdp : <?php echo '<a href="'.$Pdp.'"></a>'.'<br>'?></p>  
     <a class="float-right" href="deconnexion.php" style="color:#FF0000;"> Se deconnecter </a>
    </div>
 </div>

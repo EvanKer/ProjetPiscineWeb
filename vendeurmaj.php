@@ -37,7 +37,7 @@ if (isset($_POST["bouton01"])) {
                                                        $result = mysqli_query($db_handle, $sql);                                                      
 
                                                         //echo "le vendeur existe deja dans la bdd, ajout des donnees effectue";                                                     
-                                                       header('location:vendeurinfo.php');
+                                                       header('location:vendeurprofil.php');
                                                            } 
                                                         else { 
                                                         
